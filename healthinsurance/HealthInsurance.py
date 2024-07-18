@@ -1,0 +1,116 @@
+import pickle
+import numpy as np
+import pandas as pd
+
+
+
+
+class HealthInsurance:
+  def __init__( self ):
+      self.home_path = ''
+      self.annual_premium_scaler = pickle.load( open( self.home_path + 'parameter/annual_premium_scaler.pkl' ))
+      self.age_scaler            = pickle.load( open( self.home_path +  'parameter/age_scaler.pkl'))
+      self.vintage_scaler        = pickle.load( open( self.home_path +  'parameter/vintage_scaler.pkl'))
+      self.months_with_us_scaler = pickle.load( open( self.home_path + 'parameter/months_with_us_scaler.pkl' ))
+      self.target_encode_region_code_scaler = pickle.load( open( self.home_path +'parameter/region_code_scaler.pkl'))
+      self.fe_policy_sales_channel_scaler   = pickle.load( open( self.home_path + 'parameter/policy_sales_channel_scaler.pkl'))
+      self.vehicle_age_1-2_Year_scaler   = pickle.load( open( self.home_path + 'parameter/vehicle_age_1-2_Year_scaler.pkl'))
+      self.vehicle_age_<_1_Year_scaler   = pickle.load( open( self.home_path + 'parameter/vehicle_age_menor_q_1_Year_scaler.pkl'))
+      self.vehicle_age_>_2_Years_scaler  = pickle.load( open( self.home_path + 'parameter/vehicle_age_maiorq_2_Years_scaler.pkl'))
+      self.gender_Female_scaler   = pickle.load( open( self.home_path + 'parameter/gender_Female_scaler.pkl'))
+      self.gender_Male_scaler  = pickle.load( open( self.home_path + 'parameter/gender_Male_scaler.pkl'))
+
+
+  def data_cleaning( self, df1):
+      # 1.1. Rename Columns
+      cols_new = ['id', 'gender', 'age', 'driving_License', 'region_code',
+                  'previously_insured', 'vehicle_age', 'vehicle_damage', 'annual_premium',
+                  'policy_sales_channel', 'vintage' ]
+      # rename
+      df1.columns = cols_new
+
+      return df
+
+  #def feature_engineering(self, df2):
+    # 2.0 Feature Engineering
+
+    # Vehicle Damage Number
+
+  #  df2['vehicle_damage'] = df2['vehicle_damage'].apply( lambda x: 1 if x == 'Yes' else 0)
+
+    # Vehicle Age
+
+    #df2['vehicle_age'] = df2['vehicle_age'].apply(lambda x: 'over_2_years' if x == '> ')
+
+
+  def data_preparation( self, df5):
+        # Rescaling
+
+    #rs = RobustScaler()
+    #mms = MinMaxScaler()
+
+    # competition distance
+    df5['annual_premium']       = self.annual_premium_scaler.transform( df5[['annual_premium']].values )
+
+    df5['region_code']          = self.region_code_scaler.transform( df5[['region_code']].values )
+
+    df5['policy_sales_channel'] = self.fe_policy_sales_channel_scaler.transform( df5[['policy_sales_channel']].values )
+
+    df5['vintage']              = self.vintage_scaler.fit_transform( df5[['vintage']].values )
+
+    df5['age']                  = self.age_scaler.transform( df5[['age']].values )
+
+    df5['months_with_us']       = self.months_with_us_scaler.transform( df5[['months_with_us']].values )
+
+    # Encoding
+    # gender - One Hot Encoding
+    df5 = pd.get_dummies( df5, prefix=['gender'], columns=['gender'] )
+
+    # vehicle_age - One Hot Encoding
+    df5 = pd.get_dummies( df5, prefix=['vehicle_age'], columns=['vehicle_age'] )
+
+
+    # vehicle_damage - subtituir 0 1
+    df5['vehicle_damage'] = df5['vehicle_damage'].apply(lambda x: 1 if x == 'Yes' else 0)
+
+
+    # Suponha que você tenha um DataFrame chamado df_test
+    # com a coluna 'gender_Famale' contendo os valores {'False': 0, 'True': 1}
+
+    # Crie um dicionário de mapeamento
+    mapeamento = {False: 0, True: 1}
+
+    # Aplique o mapeamento à coluna 'gender_Famale'
+    df5['gender_Female'] = df_train['gender_Female'].map(mapeamento)
+
+
+    df5['gender_Male'] = df5['gender_Male'].map(mapeamento)
+
+
+
+    df5['vehicle_age_1-2 Year'] = df5['vehicle_age_1-2 Year'].map(mapeamento)
+
+
+
+    df5['vehicle_age_< 1 Year'] = df5['vehicle_age_< 1 Year'].map(mapeamento)
+
+
+
+    df5['vehicle_age_> 2 Years'] = df5['vehicle_age_> 2 Years'].map(mapeamento)
+
+    return df5
+
+
+
+  def get_prediction( self, model, original_data, test_data):
+    # model prediction
+    pred = model.predict_proba( test_data )
+
+    # join prediction into original data
+
+    original_data['score'] =  pred
+
+    return original_data.to_json (orient = 'records', date_format = 'iso')
+
+
+
