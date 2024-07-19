@@ -8,18 +8,18 @@ import pandas as pd
 class HealthInsurance:
   def __init__( self ):
       self.home_path = ''
-      self.annual_premium_scaler             = pickle.load( open( self.home_path + 'parameter/annual_premium_scaler.pkl' ))
-      self.age_scaler                        = pickle.load( open( self.home_path +  'parameter/age_scaler.pkl'))
-      self.vintage_scaler                    = pickle.load( open( self.home_path +  'parameter/vintage_scaler.pkl'))
-      self.months_with_us_scaler             = pickle.load( open( self.home_path + 'parameter/months_with_us_scaler.pkl' ))
-      self.target_encode_region_code_scaler  = pickle.load( open( self.home_path +'parameter/region_code_scaler.pkl'))
-      self.fe_policy_sales_channel_scaler    = pickle.load( open( self.home_path + 'parameter/policy_sales_channel_scaler.pkl'))
-      self.vehicle_age_1-2_Year_scaler       = pickle.load( open( self.home_path + 'parameter/vehicle_age_1-2_Year_scaler.pkl'))
-      self.vehicle_age_<_1_Year_scaler       = pickle.load( open( self.home_path + 'parameter/vehicle_age_menor_q_1_Year_scaler.pkl'))
-      self.vehicle_age_>_2_Years_scaler      = pickle.load( open( self.home_path + 'parameter/vehicle_age_maiorq_2_Years_scaler.pkl'))
-      self.gender_Female_scaler              = pickle.load( open( self.home_path + 'parameter/gender_Female_scaler.pkl'))
-      self.gender_Male_scaler                = pickle.load( open( self.home_path + 'parameter/gender_Male_scaler.pkl'))
-      self.vehicle_damage_scaler             = pickle.load( open( self.home_path + 'parameter/vehicle_damage_scaler.pkl'))
+      self.annual_premium_scaler                   = pickle.load( open( self.home_path + 'parameter/annual_premium_scaler.pkl' ))
+      self.age_scaler                              = pickle.load( open( self.home_path +  'parameter/age_scaler.pkl'))
+      self.vintage_scaler                          = pickle.load( open( self.home_path +  'parameter/vintage_scaler.pkl'))
+      self.months_with_us_scaler                   = pickle.load( open( self.home_path + 'parameter/months_with_us_scaler.pkl' ))
+      self.target_encode_region_code_scaler        = pickle.load( open( self.home_path +'parameter/region_code_scaler.pkl'))
+      self.fe_policy_sales_channel_scaler          = pickle.load( open( self.home_path + 'parameter/policy_sales_channel_scaler.pkl'))
+      self.vehicle_age_1_2_Year_scaler             = pickle.load( open( self.home_path + 'parameter/vehicle_age_1_2_Year_scaler.pkl'))
+      self.vehicle_age_menor_q_1_Year_scaler       = pickle.load( open( self.home_path + 'parameter/vehicle_age_menor_q_1_Year_scaler.pkl'))
+      self.vehicle_age_maior_q_2_Years_scaler      = pickle.load( open( self.home_path + 'parameter/vehicle_age_maiorq_2_Years_scaler.pkl'))
+      self.gender_Female_scaler                    = pickle.load( open( self.home_path + 'parameter/gender_Female_scaler.pkl'))
+      self.gender_Male_scaler                      = pickle.load( open( self.home_path + 'parameter/gender_Male_scaler.pkl'))
+      self.vehicle_damage_scaler                   = pickle.load( open( self.home_path + 'parameter/vehicle_damage_scaler.pkl'))
       
 
   def data_cleaning( self, df1):
@@ -69,9 +69,9 @@ class HealthInsurance:
 
     df5['vehicle_age_< 1 Year']  = self.vehicle_age_menor_q_1_Year_scaler.transform( df5[['vehicle_age_< 1 Year']].values )
 
-    df5['vehicle_age_1-2 Year']  = self.vehicle_age_1-2_Year_scaler.transform( df5[['vehicle_age_1-2 Year']].values )
+    df5['vehicle_age_1-2 Year']  = self.vehicle_age_1_2_Year_scaler.transform( df5[['vehicle_age_1-2 Year']].values )
 
-    df5['vehicle_age_> 2 Years'] = self.vehicle_age_menorq_2_Years_scaler.transform( df5[['vehicle_age_> 2 Years']].values )
+    df5['vehicle_age_> 2 Years'] = self.vehicle_age_maior_q_2_Years_scaler.transform( df5[['vehicle_age_> 2 Years']].values )
 
     df5['vehicle_damage']        = self.vehicle_damage_scaler.transform( df5[['vehicle_damage']].values )
     
