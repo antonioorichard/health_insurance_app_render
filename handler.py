@@ -1,10 +1,9 @@
 import pickle
 import pandas as pd
 from flask import Flask, request, Response
-from healthinsurance import HealthInsurance
+from healthinsurance.HealthInsurance import HealthInsurance
 
 # loading model
-#path = 'C:/Users/Antonio Richard/OneDrive - acad.ifma.edu.br/Documentos/CURSO - DATA SCIENTS/Apresentação do problema de negócio/health_insurance_cross-sell/health_insurance_app'
 model = pickle.load( open ('models/model_health_insurance.pkl', 'rb' ))
 
 # initialize API
