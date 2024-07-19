@@ -50,53 +50,66 @@ class HealthInsurance:
     #mms = MinMaxScaler()
 
     # competition distance
-    df5['annual_premium']       = self.annual_premium_scaler.transform( df5[['annual_premium']].values )
+    df5['annual_premium']        = self.annual_premium_scaler.transform( df5[['annual_premium']].values )
 
-    df5['region_code']          = self.region_code_scaler.transform( df5[['region_code']].values )
+    df5['region_code']           = self.region_code_scaler.transform( df5[['region_code']].values )
 
-    df5['policy_sales_channel'] = self.fe_policy_sales_channel_scaler.transform( df5[['policy_sales_channel']].values )
+    df5['policy_sales_channel']  = self.fe_policy_sales_channel_scaler.transform( df5[['policy_sales_channel']].values )
 
-    df5['vintage']              = self.vintage_scaler.fit_transform( df5[['vintage']].values )
+    df5['vintage']               = self.vintage_scaler.fit_transform( df5[['vintage']].values )
 
-    df5['age']                  = self.age_scaler.transform( df5[['age']].values )
+    df5['age']                   = self.age_scaler.transform( df5[['age']].values )
 
-    df5['months_with_us']       = self.months_with_us_scaler.transform( df5[['months_with_us']].values )
+    df5['months_with_us']        = self.months_with_us_scaler.transform( df5[['months_with_us']].values )
 
+    df5['gender_Male']           = self.gender_Male_scaler.transform( df5[['gender_Male']].values )
+    
+    df5['gender_Female']         = self.gender_Female_scaler.transform( df5[['gender_Female']].values )
+
+    df5['vehicle_age_< 1 Year']  = self.vehicle_age_menor_q_1_Year_scaler.transform( df5[['vehicle_age_< 1 Year']].values )
+
+    df5['vehicle_age_1-2 Year']  = self.vehicle_age_1-2_Year_scaler.transform( df5[['vehicle_age_1-2 Year']].values )
+
+    df5['vehicle_age_> 2 Years'] = self.vehicle_age_menorq_2_Years_scaler.transform( df5[['vehicle_age_> 2 Years']].values )
+
+    df5['vehicle_damage'] = self.vehicle_damage_scaler.transform( df5[['vehicle_damage']].values )
+    
+    
     # Encoding
     # gender - One Hot Encoding
-    df5 = pd.get_dummies( df5, prefix=['gender'], columns=['gender'] )
+    #df5 = pd.get_dummies( df5, prefix=['gender'], columns=['gender'] )
 
     # vehicle_age - One Hot Encoding
-    df5 = pd.get_dummies( df5, prefix=['vehicle_age'], columns=['vehicle_age'] )
+    #df5 = pd.get_dummies( df5, prefix=['vehicle_age'], columns=['vehicle_age'] )
 
 
     # vehicle_damage - subtituir 0 1
-    df5['vehicle_damage'] = df5['vehicle_damage'].apply(lambda x: 1 if x == 'Yes' else 0)
+    #df5['vehicle_damage'] = df5['vehicle_damage'].apply(lambda x: 1 if x == 'Yes' else 0)
 
 
     # Suponha que você tenha um DataFrame chamado df_test
     # com a coluna 'gender_Famale' contendo os valores {'False': 0, 'True': 1}
 
     # Crie um dicionário de mapeamento
-    mapeamento = {False: 0, True: 1}
+    #mapeamento = {False: 0, True: 1}
 
     # Aplique o mapeamento à coluna 'gender_Famale'
-    df5['gender_Female'] = df_train['gender_Female'].map(mapeamento)
+    #df5['gender_Female'] = df_train['gender_Female'].map(mapeamento)
 
 
-    df5['gender_Male'] = df5['gender_Male'].map(mapeamento)
-
-
-
-    df5['vehicle_age_1-2 Year'] = df5['vehicle_age_1-2 Year'].map(mapeamento)
+    #df5['gender_Male'] = df5['gender_Male'].map(mapeamento)
 
 
 
-    df5['vehicle_age_< 1 Year'] = df5['vehicle_age_< 1 Year'].map(mapeamento)
+    #df5['vehicle_age_1-2 Year'] = df5['vehicle_age_1-2 Year'].map(mapeamento)
 
 
 
-    df5['vehicle_age_> 2 Years'] = df5['vehicle_age_> 2 Years'].map(mapeamento)
+    #df5['vehicle_age_< 1 Year'] = df5['vehicle_age_< 1 Year'].map(mapeamento)
+
+
+
+    #df5['vehicle_age_> 2 Years'] = df5['vehicle_age_> 2 Years'].map(mapeamento)
 
     return df5
 
