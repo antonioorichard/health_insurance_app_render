@@ -9,7 +9,7 @@ class HealthInsurance:
   def __init__( self ):
       self.home_path = ''
       self.annual_premium_scaler                   = pickle.load( open( self.home_path + 'parameter/annual_premium_scaler.pkl', 'rb' ))
-      self.age_scaler                              = pickle.load( open( self.home_path +  'parameter/age_scaler.pkl', 'rb'))
+      self.age_scaler                              = pickle.load( open( self.home_path +  'parameter/Age_scaler.pkl', 'rb'))
       self.vintage_scaler                          = pickle.load( open( self.home_path +  'parameter/vintage_scaler.pkl', 'rb'))
       self.months_with_us_scaler                   = pickle.load( open( self.home_path + 'parameter/months_with_us_scaler.pkl', 'rb' ))
       self.target_encode_region_code_scaler        = pickle.load( open( self.home_path +'parameter/region_code_scaler.pkl', 'rb'))
