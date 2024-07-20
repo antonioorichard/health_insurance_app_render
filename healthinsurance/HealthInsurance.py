@@ -16,7 +16,7 @@ class HealthInsurance:
       self.fe_policy_sales_channel_scaler          = pickle.load( open( self.home_path + 'parameter/policy_sales_channel_scaler.pkl', 'rb'))
       self.vehicle_age_1_2_Year_scaler             = pickle.load( open( self.home_path + 'parameter/vehicle_age_1_2_Year_scaler.pkl', 'rb'))
       self.vehicle_age_menor_q_1_Year_scaler       = pickle.load( open( self.home_path + 'parameter/vehicle_age_menor_q_1_Year_scaler.pkl', 'rb'))
-      self.vehicle_age_maior_q_2_Years_scaler      = pickle.load( open( self.home_path + 'parameter/vehicle_age_maiorq_2_Years_scaler.pkl', 'rb'))
+      self.vehicle_age_maior_q_2_Years_scaler      = pickle.load( open( self.home_path + 'parameter/vehicle_age_maior_q_2_Years_scaler.pkl', 'rb'))
       self.gender_Female_scaler                    = pickle.load( open( self.home_path + 'parameter/gender_Female_scaler.pkl', 'rb'))
       self.gender_Male_scaler                      = pickle.load( open( self.home_path + 'parameter/gender_Male_scaler.pkl', 'rb'))
       self.vehicle_damage_scaler                   = pickle.load( open( self.home_path + 'parameter/vehicle_damage_scaler.pkl', 'rb'))
