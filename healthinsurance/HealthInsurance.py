@@ -41,7 +41,7 @@ class HealthInsurance:
                     'vehicle_age_> 2 Years'
                      ]
       # rename
-      df1.columns = cols_new
+      df1 = df1[cols_new]
 
       return df
 
