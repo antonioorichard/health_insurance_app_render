@@ -25,7 +25,7 @@ class HealthInsurance:
   def data_cleaning( self, df1):
       # 1.1. Rename Columns
       cols_new = [	
-                    'driving_license	',	
+                    'driving_license',	
                     'previously_insured',
                     'annual_premium',
                     'age',
@@ -37,7 +37,7 @@ class HealthInsurance:
                     'gender_Female',
                     'gender_Male',
                     'vehicle_age_1-2 Year',	
-                    'vehicle_age_< 1 Year	',
+                    'vehicle_age_< 1 Year',
                     'vehicle_age_> 2 Years'
                      ]
       # rename
