@@ -66,7 +66,7 @@ class HealthInsurance:
     # competition distance
     df5['annual_premium']        = self.annual_premium_scaler.transform( df5[['annual_premium']].values )
 
-    df5['region_code']           = self.region_code_scaler.transform( df5[['region_code']].values )
+    df5['region_code']           = self.target_encode_region_code_scaler.transform( df5[['region_code']].values )
 
     df5['policy_sales_channel']  = self.fe_policy_sales_channel_scaler.transform( df5[['policy_sales_channel']].values )
 
