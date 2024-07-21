@@ -43,7 +43,7 @@ class HealthInsurance:
       # rename
       df1 = df1[cols_new]
 
-      return df
+      return df1
 
   def feature_engineering(self, df2):
     # 2.0 Feature Engineering
