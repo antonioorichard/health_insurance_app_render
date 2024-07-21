@@ -9,10 +9,10 @@ class HealthInsurance:
   def __init__( self ):
       self.home_path = ''
       self.annual_premium_scaler                   = pickle.load( open( self.home_path + 'parameter/annual_premium_scaler.pkl', 'rb' ))
-      self.age_scaler                              = pickle.load( open( self.home_path +  'parameter/Age_scaler.pkl', 'rb'))
-      self.vintage_scaler                          = pickle.load( open( self.home_path +  'parameter/vintage_scaler.pkl', 'rb'))
+      self.age_scaler                              = pickle.load( open( self.home_path + 'parameter/Age_scaler.pkl', 'rb'))
+      self.vintage_scaler                          = pickle.load( open( self.home_path + 'parameter/vintage_scaler.pkl', 'rb'))
       self.months_with_us_scaler                   = pickle.load( open( self.home_path + 'parameter/months_with_us_scaler.pkl', 'rb' ))
-      self.target_encode_region_code_scaler        = pickle.load( open( self.home_path +'parameter/region_code_scaler.pkl', 'rb'))
+      self.region_code_scaler                      = pickle.load( open( self.home_path + 'parameter/region_code_scaler.pkl', 'rb'))
       self.fe_policy_sales_channel_scaler          = pickle.load( open( self.home_path + 'parameter/policy_sales_channel_scaler.pkl', 'rb'))
       self.vehicle_age_1_2_Year_scaler             = pickle.load( open( self.home_path + 'parameter/vehicle_age_1_2_Year_scaler.pkl', 'rb'))
       self.vehicle_age_menor_q_1_Year_scaler       = pickle.load( open( self.home_path + 'parameter/vehicle_age_menor_q_1_Year_scaler.pkl', 'rb'))
@@ -66,7 +66,7 @@ class HealthInsurance:
     # competition distance
     df5['annual_premium']        = self.annual_premium_scaler.transform( df5[['annual_premium']].values )
 
-    df5['region_code']           = self.target_encode_region_code_scaler.transform( df5[['region_code']].values )
+    df5['region_code']           = self.region_code_scaler.transform( df5[['region_code']].values )
 
     df5['policy_sales_channel']  = self.fe_policy_sales_channel_scaler.transform( df5[['policy_sales_channel']].values )
 
