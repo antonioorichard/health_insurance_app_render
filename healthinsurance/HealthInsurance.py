@@ -12,7 +12,7 @@ class HealthInsurance:
       self.age_scaler                              = pickle.load( open( self.home_path + 'parameter/Age_scaler.pkl', 'rb'))
       self.vintage_scaler                          = pickle.load( open( self.home_path + 'parameter/vintage_scaler.pkl', 'rb'))
       self.months_with_us_scaler                   = pickle.load( open( self.home_path + 'parameter/months_with_us_scaler.pkl', 'rb' ))
-     # self.region_code_scaler                      = pickle.load( open( self.home_path + 'parameter/region_code_scaler.pkl', 'rb'))
+      self.region_code_scaler                      = pickle.load( open( self.home_path + 'parameter/region_code_scaler.pkl', 'rb'))
       self.fe_policy_sales_channel_scaler          = pickle.load( open( self.home_path + 'parameter/policy_sales_channel_scaler.pkl', 'rb'))
       self.vehicle_age_1_2_Year_scaler             = pickle.load( open( self.home_path + 'parameter/vehicle_age_1_2_Year_scaler.pkl', 'rb'))
       self.vehicle_age_menor_q_1_Year_scaler       = pickle.load( open( self.home_path + 'parameter/vehicle_age_menor_q_1_Year_scaler.pkl', 'rb'))
@@ -65,15 +65,15 @@ class HealthInsurance:
 
 
     
-    df5['region_code'] = rs.fit_transform( df5[['region_code']].values )
+    #df5['region_code'] = rs.fit_transform( df5[['region_code']].values )
 
-    df5['policy_sales_channel'] = mms.fit_transform( df5[['policy_sales_channel']].values )
+    #df5['policy_sales_channel'] = mms.fit_transform( df5[['policy_sales_channel']].values )
 
 
 
     
     # competition distance
-    df5['annual_premium']              = self.annual_premium_scaler.transform( df5[['annual_premium']].values )
+    #df5['annual_premium']              = self.annual_premium_scaler.transform( df5[['annual_premium']].values )
 
     #df5['region_code']           = self.region_code_scaler.transform( df5[['region_code']].values )
 
@@ -81,23 +81,23 @@ class HealthInsurance:
     
     #df5.loc[:, 'policy_sales_channel'] = df5['policy_sales_channel'].map(self.fe_policy_sales_channel_scaler)
     
-    df5['vintage']                     = self.vintage_scaler.transform( df5[['vintage']].values )
+    #df5['vintage']                     = self.vintage_scaler.transform( df5[['vintage']].values )
 
-    df5['age']                         = self.age_scaler.transform( df5[['age']].values )
+   # df5['age']                         = self.age_scaler.transform( df5[['age']].values )
 
-    df5['months_with_us']              = self.months_with_us_scaler.transform( df5[['months_with_us']].values )
+    #df5['months_with_us']              = self.months_with_us_scaler.transform( df5[['months_with_us']].values )
 
-    df5['gender_Male']                 = self.gender_Male_scaler.transform( df5[['gender_Male']].values )
+   # df5['gender_Male']                 = self.gender_Male_scaler.transform( df5[['gender_Male']].values )
     
-    df5['gender_Female']               = self.gender_Female_scaler.transform( df5[['gender_Female']].values )
+   # df5['gender_Female']               = self.gender_Female_scaler.transform( df5[['gender_Female']].values )
 
-    df5['vehicle_age_< 1 Year']        = self.vehicle_age_menor_q_1_Year_scaler.transform( df5[['vehicle_age_< 1 Year']].values )
+   # df5['vehicle_age_< 1 Year']        = self.vehicle_age_menor_q_1_Year_scaler.transform( df5[['vehicle_age_< 1 Year']].values )
 
-    df5['vehicle_age_1-2 Year']        = self.vehicle_age_1_2_Year_scaler.transform( df5[['vehicle_age_1-2 Year']].values )
+   # df5['vehicle_age_1-2 Year']        = self.vehicle_age_1_2_Year_scaler.transform( df5[['vehicle_age_1-2 Year']].values )
 
-    df5['vehicle_age_> 2 Years']       = self.vehicle_age_maior_q_2_Years_scaler.transform( df5[['vehicle_age_> 2 Years']].values )
+   # df5['vehicle_age_> 2 Years']       = self.vehicle_age_maior_q_2_Years_scaler.transform( df5[['vehicle_age_> 2 Years']].values )
 
-    df5['vehicle_damage']              = self.vehicle_damage_scaler.transform( df5[['vehicle_damage']].values )
+    #df5['vehicle_damage']              = self.vehicle_damage_scaler.transform( df5[['vehicle_damage']].values )
     
     
     # Encoding
