@@ -47,8 +47,7 @@ class HealthInsurance:
 
   def feature_engineering(self, df2):
     # 2.0 Feature Engineering
-    rs = RobustScaler()
-    df2['region_code'] = rs.fit_transform( df2[['region_code']].values )
+        
     # Vehicle Damage Number
 
   #  df2['vehicle_damage'] = df2['vehicle_damage'].apply( lambda x: 1 if x == 'Yes' else 0)
@@ -61,15 +60,26 @@ class HealthInsurance:
   def data_preparation( self, df5):
         # Rescaling
 
-    #rs = RobustScaler()
-    #mms = MinMaxScaler()
+    rs = RobustScaler()
+    mms = MinMaxScaler()
 
+
+    
+    df2['region_code'] = rs.fit_transform( df2[['region_code']].values )
+
+    df5['policy_sales_channel'] = mms.fit_transform( df5[['policy_sales_channel']].values )
+
+
+
+    
     # competition distance
     df5['annual_premium']              = self.annual_premium_scaler.transform( df5[['annual_premium']].values )
 
     #df5['region_code']           = self.region_code_scaler.transform( df5[['region_code']].values )
 
-    df5.loc[:, 'policy_sales_channel'] = df5['policy_sales_channel'].map(self.fe_policy_sales_channel_scaler)
+    
+    
+    #df5.loc[:, 'policy_sales_channel'] = df5['policy_sales_channel'].map(self.fe_policy_sales_channel_scaler)
     
     df5['vintage']                     = self.vintage_scaler.fit_transform( df5[['vintage']].values )
 
