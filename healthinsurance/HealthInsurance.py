@@ -81,7 +81,7 @@ class HealthInsurance:
     
     #df5.loc[:, 'policy_sales_channel'] = df5['policy_sales_channel'].map(self.fe_policy_sales_channel_scaler)
     
-    df5['vintage']                     = self.vintage_scaler.fit_transform( df5[['vintage']].values )
+    df5['vintage']                     = self.vintage_scaler.transform( df5[['vintage']].values )
 
     df5['age']                         = self.age_scaler.transform( df5[['age']].values )
 
