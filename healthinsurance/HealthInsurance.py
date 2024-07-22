@@ -56,7 +56,7 @@ class HealthInsurance:
     # Vehicle Age
 
     #df2['vehicle_age'] = df2['vehicle_age'].apply(lambda x: 'over_2_years' if x == '> ')
-      return df2
+    return df2
 
   def data_preparation( self, df5):
         # Rescaling
