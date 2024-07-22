@@ -146,7 +146,7 @@ class HealthInsurance:
 
     # join prediction into original data
 
-    original_data['score'] =  pred
+    #original_data['score'] =  pred
 
     return original_data.to_json (orient = 'records', date_format = 'iso')
 
