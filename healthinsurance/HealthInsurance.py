@@ -65,7 +65,7 @@ class HealthInsurance:
 
 
     
-    df2['region_code'] = rs.fit_transform( df2[['region_code']].values )
+    df5['region_code'] = rs.fit_transform( df5[['region_code']].values )
 
     df5['policy_sales_channel'] = mms.fit_transform( df5[['policy_sales_channel']].values )
 
