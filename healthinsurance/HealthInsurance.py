@@ -58,10 +58,12 @@ class HealthInsurance:
     return df2
 
   def data_preparation( self, df5):
-        # Rescaling
+   # como os dados que enviei na requesição já são transformados, eles não precisam dessa parte, por isso, 
+    # está comentado, caso não, é só descomentar. 
+    # Rescaling
 
-    rs = RobustScaler()
-    mms = MinMaxScaler()
+    #rs = RobustScaler()
+    #mms = MinMaxScaler()
 
 
     
@@ -145,7 +147,7 @@ class HealthInsurance:
     pred = model.predict_proba( test_data )
 
     # join prediction into original data
-    original_data['response'] = pred[:, 1].tolist()
+    original_data['score'] = pred[:, 1].tolist()
     #original_data['score'] =  pred
 
     return original_data.to_json (orient = 'records', date_format = 'iso')
