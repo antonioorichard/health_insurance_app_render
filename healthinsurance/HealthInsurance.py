@@ -162,12 +162,8 @@ class HealthInsurance:
 
 
     #df5['vehicle_age_> 2 Years'] = df5['vehicle_age_> 2 Years'].map(mapeamento)
-
-
-
-          # 1.1. Rename Columns
-    cols_new = [	
-                'age',
+    lista = list(df5.columns)
+    cols_new = ['age', 
                 'driving_license',
                 'region_code',
                 'previously_insured',
@@ -180,10 +176,17 @@ class HealthInsurance:
                 'gender_Male',	
                 'vehicle_age_1-2 Year',
                 'vehicle_age_< 1 Year',
-                'vehicle_age_> 2 Years'
-                                          ]	
+                'vehicle_age_> 2 Years'  ]
+    cols_apli = cols_new 
+    for x in lista:
+        if x in cols_new:
+          
+        else:
+            cols_apli.remove(x)  
+
+      
     # rename
-    df5 = df5[cols_new]
+    df5 = df5[cols_apli]
 
     return df5
 
