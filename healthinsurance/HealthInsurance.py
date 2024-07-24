@@ -177,15 +177,15 @@ class HealthInsurance:
                 'vehicle_age_1-2 Year',
                 'vehicle_age_< 1 Year',
                 'vehicle_age_> 2 Years'  ]
-    cols_apli = cols_new 
+    #cols_apli = cols_new 
     for x in lista:
         if x not in cols_new: 
-         # df5[x] = df5[x].apply(lambda ) tem que criar uma coluna fake, caso não exista para modelo rodar 
-          cols_apli.remove(x)  
+          df5[x] = df5['driving_license'].apply( lambda x : 0 ) #tem que criar uma coluna fake, caso não exista para modelo M.L rodar. 
+          #cols_apli.remove(x)  
 
       
-    # rename
-    df5 = df5[cols_apli]
+    # estruturar de acordo com o modelo conhece
+    df5 = df5[cols_new]
 
     return df5
 
